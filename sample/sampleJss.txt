@@ -1,0 +1,505 @@
+// Global variable
+var regex_Email = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+var req;
+
+function ShowPage(pagename)
+{
+   document.location.href=pagename;
+}
+function checkKey(formName,controlID) 
+{
+	//alert("controlid="+controlID);
+   var theKey = window.event.keyCode;
+   if(theKey == 13)
+   { 
+		event.returnValue = false;
+		event.cancelBubble = true;
+		document.forms[formName][controlID].focus();
+		//document.all.formName.controlID.style.backgroundColor ="red";
+   }
+
+ }
+
+//function to validate the Login page
+function ValidateLoginpage()
+{
+	var username=document.forms["frmIndex1"]["txtUsername"].value;
+	var pwd=document.forms["frmIndex1"]["txtPwd"].value;
+	if (username==null || username=="")
+	  {
+		  alert("Pls enter the username");
+		  document.forms["frmIndex1"]["txtUsername"].focus();
+		  return false;
+	  }
+	
+	if (pwd==null || pwd=="")
+	{
+		alert("Pls enter the password");
+		document.forms["frmIndex1"]["txtPwd"].focus();
+		return false;
+	 }
+	
+}
+
+//function to validate the Login page
+function ValidateRegpage()
+{
+	var txtUserName=document.forms["frmReg"]["txtUserName"].value;
+	    
+	var txtName=document.forms["frmReg"]["txtName"].value;
+	var pwd=document.forms["frmReg"]["txtPwd"].value;
+	var txtConfirmPwd=document.forms["frmReg"]["txtConfirmPwd"].value;
+	var txtRemarks=document.forms["frmReg"]["txtRemarks"].value;
+
+	if (txtName==null || txtName=="")
+	{
+		alert("Pls enter the name");
+		document.forms["frmReg"]["txtName"].focus();
+		return false;
+	}
+	
+	if (txtUserName==null || txtUserName=="")
+	{
+		alert("Pls enter the username");
+		document.forms["frmReg"]["txtUserName"].focus();
+		return false;
+	}
+	
+	if (pwd==null || pwd=="")
+	{
+		alert("Pls enter the password");
+		document.forms["frmReg"]["txtPwd"].focus();
+		return false;
+	}
+	if (txtConfirmPwd==null || txtConfirmPwd=="")
+	{
+		alert("Pls enter the confirm password");
+		document.forms["frmReg"]["txtConfirmPwd"].focus();
+		return false;
+	}	
+	if (txtRemarks==null || txtRemarks=="")
+	{
+		alert("Pls enter the remarks");
+		document.forms["frmReg"]["txtRemarks"].focus();
+		return false;
+	}
+	if(pwd!=txtConfirmPwd)
+	{
+		alert("Password and Confirm Password must be same");
+		document.forms["frmReg"]["txtConfirmPwd"].focus();
+		return false;
+	}
+	
+	
+}
+
+//function to validate the Login page
+function ValidateUserDetails()
+{
+	var txtUserMail=document.forms["frmUserDet"]["txtUserMail"].value;
+	var txtUserPwd=document.forms["frmUserDet"]["txtUserPwd"].value;
+	var txtRemark=document.forms["frmUserDet"]["txtRemark"].value;
+
+if (txtUserMail==null || txtUserMail=="")
+	{
+		alert("Pls enter the txtUserMail");
+		document.forms["frmUserDet"]["txtUserMail"].focus();
+		return false;
+	}
+	if(txtUserMail != "" )
+	{    
+		if (!regex_Email.test(txtUserMail)) 
+		 {
+			alert("Your Email-id is not a Valid One");
+			document.forms["frmUserDet"]["txtUserMail"].focus();
+			return false;  
+		 }
+	}
+	
+	if (txtUserPwd==null || txtUserPwd=="")
+	{
+		alert("Pls enter the password");
+		document.forms["frmUserDet"]["txtUserPwd"].focus();
+		return false;
+	 }
+	if (txtRemark==null || txtRemark=="")
+	{
+		alert("Pls enter the remarks");
+		document.forms["frmUserDet"]["txtRemark"].focus();
+		return false;
+	 }
+	
+}
+
+
+function SetCursorFocus(frm,txt) 
+{
+	//alert("txt = "+txt);
+  document.forms[frm][txt].focus();
+}
+
+function SetCommentFocus(frm,txt,txtcmt,userid) 
+{
+	var s;
+	if(userid==0)
+	{
+			alert("Please Login to Reply for this comment");
+	}
+	else
+	{
+		document.forms[frm][txt].focus();
+		s=document.forms["comment_form1"][txtcmt].value;
+		document.getElementById("divReplyComment").style.display = "block";
+		document.getElementById("divReplyComment").innerHTML = "Reply For Comment: '"+s+"'";
+	}
+}
+
+//function to validate the Film Details
+function ValidateFilmDetails(oForm)
+{
+	var txtFilmName=document.forms["frmFilmDetails"]["txtFilmName"].value;
+	var SelGenere=document.forms["frmFilmDetails"]["SelGenere"].value;
+	var txtAbstract=document.forms["frmFilmDetails"]["txtAbstract"].value;
+
+	if (txtFilmName==null || txtFilmName=="")
+	{
+		alert("Pls enter the FilmName");
+		document.forms["frmFilmDetails"]["txtFilmName"].focus();
+		return false;
+	}
+	if(SelGenere=="select")
+	{
+		alert("Pls select the Genere");
+		document.forms["frmFilmDetails"]["SelGenere"].focus();
+		return false;
+	}
+	
+	if (txtAbstract==null || txtAbstract=="")
+	{
+		alert("Pls enter the Abstract");
+		document.forms["frmFilmDetails"]["txtAbstract"].focus();
+		return false;
+	 }
+	return  ImageValidation(oForm,"frmFilmDetails");
+	
+}
+
+
+//Ajax code
+	function GetFilmDetails(roleId)
+	{
+		var personname= document.forms["frmFilmDetails"]["txtPersonName"].value;
+		var SelRole=document.forms["frmFilmDetails"]["SelRole"].value;
+		//var SelRole = document.frmFilmDetails.SelRole.options[document.frmFilmDetails.SelRole.selectedIndex].value;
+		if(SelRole=="select")
+		{
+			alert("Pls select the role");
+			document.forms["frmFilmDetails"]["SelRole"].focus();
+			
+		}
+		else if(personname==null || personname=="")
+		{
+		{
+			alert("Pls enter the person name");
+			document.forms["frmFilmDetails"]["txtPersonName"].focus();
+		}
+		}
+		else
+		{
+	
+			
+			var strURL="FindFilmDetails.php?role="+SelRole+"&personname="+personname;
+			if (window.XMLHttpRequest) 
+			{
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				req=new XMLHttpRequest();
+			}
+			else 
+			{ // code for IE6, IE5
+				req=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		   if (req)
+		   {
+			 req.onreadystatechange = function()
+			 {
+				  if (req.readyState == 4)
+				  {
+				 // only if "OK"
+					if (req.status == 200)
+					{
+						document.getElementById('divtabledispaly').innerHTML=req.responseText;
+					}//200 
+					else
+					{
+						alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+					}
+				  }//end if 4
+			  }//end of if req
+			   req.open("GET", strURL, true);
+			   req.send(null);
+		   }
+		}//end of else
+	}//end of function
+	
+	//Ajax code
+	function GetFilmsMore()
+	{
+		document.getElementById("divFilmImage1").style.display= "none";
+		document.getElementById("divFilmImage2").style.display= "block";
+
+		var strURL="FindFilmsMore.php";
+		if (window.XMLHttpRequest) 
+		{
+			// code for IE7+, Firefox, Chrome, Opera, Safari
+			req=new XMLHttpRequest();
+		}
+		else 
+		{ // code for IE6, IE5
+			req=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	   if (req)
+	   {
+		 req.onreadystatechange = function()
+		 {
+			  if (req.readyState == 4)
+			  {
+			 // only if "OK"
+				if (req.status == 200)
+				{
+					document.getElementById('divFilmImage2').innerHTML=req.responseText;
+				}//200 
+				else
+				{
+					alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+				}
+			  }//end if 4
+		  }//end of if req
+		   req.open("GET", strURL, true);
+		   req.send(null);
+	   }
+	}//end of function
+
+	
+function ImageValidation(oForm,frmname)
+{
+
+	alert("test");
+	alert("oform="+oForm);
+	alert("frmName="+frmname);
+		var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];
+		var arrInputs = oForm.getElementsByTagName("input");
+		
+		for (var i = 0; i < arrInputs.length; i++) 
+		{
+			var oInput = arrInputs[i];
+			if (oInput.type == "file") 
+			{
+				var sFileName = oInput.value;
+				if (sFileName.length > 0) 
+				{
+					var blnValid = false;
+					for (var j = 0; j < _validFileExtensions.length; j++) 
+					{
+						var sCurExtension = _validFileExtensions[j];
+						if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) 
+						{
+							blnValid = true;
+							break;
+						}//end of checking cond if
+					}//end of for loop j
+	
+					if (!blnValid) 
+					{
+						alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+						return false;
+					}
+				}//end length checking if
+			}//end of file checking if
+		}//end of for loop i
+	
+		var nme= document.getElementById("picPath");
+		if(nme.value.length<4)
+		{
+			alert('Must Select any of your photo for upload!');
+			document.forms[frmname]["picPath"].focus();
+			return false;
+		}
+}//end of image validation function
+
+	function IncrementFilmLikeUnlikeCount(Std,section)
+	{
+	   var strURL="IncrementFilmCount.php?standard="+Std+"&section="+section;
+		if (window.XMLHttpRequest) 
+		{
+			// code for IE7+, Firefox, Chrome, Opera, Safari
+			req=new XMLHttpRequest();
+		}
+		else 
+		{ // code for IE6, IE5
+			req=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+	   //var req = new XMLHttpRequest();
+	   if (req)
+	   {
+		 req.onreadystatechange = function()
+		 {
+			  if (req.readyState == 4)
+			  {
+			 // only if "OK"
+				if (req.status == 200)
+				{
+					document.getElementById('studentdiv').innerHTML=req.responseText;
+				} 
+				else
+				{
+					alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+				}
+			  }
+		  }
+		   req.open("GET", strURL, true);
+		   req.send(null);
+	   }
+	}
+
+	function GetFilmLikeUnLike(FilmId,LikeUnlike,UserId)
+	{
+		alert ("film = "+FilmId);
+		alert("LikeUnlike ="+LikeUnlike);
+		alert("UserId ="+UserId);
+		
+		if(UserId==0)
+		{
+			alert("Pls login to like and Unlike the film");
+		}
+		else
+		{
+			var strURL="FindFilmLikeUnLike.php?FilmId="+FilmId+"&LikeUnlike="+LikeUnlike+"&UserId="+UserId;
+			if (window.XMLHttpRequest) 
+			{
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				req=new XMLHttpRequest();
+			}
+			else 
+			{ // code for IE6, IE5
+				req=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		   if (req)
+		   {
+			 req.onreadystatechange = function()
+			 {
+				  if (req.readyState == 4)
+				  {
+				 // only if "OK"
+					if (req.status == 200)
+					{
+						var response= innerHTML=req.responseText;
+						alert("resp "+req.responseText);
+					// If the response text is of the format Hello|$|World 
+						var update = new Array(); 
+						if(response.indexOf('|$|'!= -1)) 
+						{ 
+							update = response.split('|$|'); 
+							alert("0 ="+update[0]+" 1 ="+update[1]);
+							// The update Array will contain update[0] = Hello,update[1] = World 
+							document.forms["frmHome"]["txtLike"].value=update[0];
+							document.forms["frmHome"]["txtUnLike"].value=update[1]; 
+						}
+						else
+						{ 
+								// The format is not as per what you thought 
+								// S do some procesing if you need 
+					  
+						} 
+					}//200 
+					else
+					{
+						alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+					}
+				  }//end if 4
+			  }//end of if req
+			   req.open("GET", strURL, true);
+			   req.send(null);
+		   }
+		}
+	}//end of function
+	
+	function test()
+	{
+		alert("in");
+	}
+function delineate(str){
+
+theleft = str.indexOf("=") + 1;
+theright = str.lastIndexOf("&");
+return(str.substring(theleft, theright));
+
+}
+	function GetCommentLikeUnLike(FilmId,LikeUnlike,UserId,txt)
+	{
+		//alert("txt= "+txt);
+		var txt_L,txt_UnL;
+		txt_L="txtLike"+txt;
+		txt_UnL="txtUnLike"+txt;
+		//alert("txt_L 0="+txt_L);
+		//alert(document.forms["frmHome"]["txtLike16"].value);
+		frm='frmHome';
+		//alert("You have requested a class with: " +txtval);
+									//alert("txt 0="+document.forms[delineate(frm)][delineate(txt_L)].value);
+									//alert("txt 0="+document.forms[frm][txt_L].value);
+
+		if(UserId==0)
+		{
+			alert("Pls login to like and Unlike the comment");
+		}
+		else
+		{
+			var strURL="FindCommentLikeUnLike.php?FilmId="+FilmId+"&LikeUnlike="+LikeUnlike+"&UserId="+UserId+"&CommentId="+txt;
+			if (window.XMLHttpRequest) 
+			{
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				req=new XMLHttpRequest();
+			}
+			else 
+			{ // code for IE6, IE5
+				req=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		   if (req)
+		   {
+			 req.onreadystatechange = function()
+			 {
+				  if (req.readyState == 4)
+				  {
+				 // only if "OK"
+					if (req.status == 200)
+					{
+						var response= innerHTML=req.responseText;
+						alert("resp "+req.responseText);
+					// If the response text is of the format Hello|$|World 
+						var update = new Array(); 
+						if(response.indexOf('|$|'!= -1)) 
+						{ 
+							update = response.split('|$|'); 
+							alert("jav 0 ="+update[0]+" 1 ="+update[1]);
+							// The update Array will contain update[0] = Hello,update[1] = World 
+							document.forms["frmHome"][txt_L].value=update[0];
+							document.forms["frmHome"][txt_UnL].value=update[1]; 
+						}
+						else
+						{ 
+								// The format is not as per what you thought 
+								// S do some procesing if you need 
+					  
+						} 
+					}//200 
+					else
+					{
+						alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+					}
+				  }//end if 4
+			  }//end of if req
+			   req.open("GET", strURL, true);
+			   req.send(null);
+		   }
+		}
+	}//end of function

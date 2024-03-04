@@ -1,0 +1,238 @@
+<form id="frmsales" name="sales" method="post"  action="frmSales.php" enctype="multipart/form-data">
+
+
+
+INSERT INTO `tblproduct` (`productId`, `productname`) VALUES ('2', 'Pencil box');
+
+
+
+<?php
+								include_once 'Config.php';
+								$query = "SELECT * FROM tblproduct order by productId";
+								
+								$result = mysql_query($query);
+								if (!$result) die ("Database access failed: " . mysql_error());
+								
+								echo "<select name='Selproduct' >";
+								echo "<option value='select'>Select</option>";	
+								while ($row = mysql_fetch_array($result))
+								{
+										echo "<option value='" . $row['productId'] . "'>" . $row['productname'] . "</option>";
+								}	
+								echo "</select>";
+<html>
+<head>
+	
+	<title>Sales Bill</title>
+	<link rel="stylesheet" type="text/css" href="CSS/Style1.css" >
+</head>
+<body>
+
+<?php
+	
+	<div  class="ContentWrapperAdmin" align="center">
+		
+		<div class="divouter">
+			
+			  
+	</div>
+	</div>
+?>
+
+</body>
+</html> 
+
+
+
+<!-- onsubmit="return Validatetextboxes()" -->
+
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "myDB";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT id, firstname, lastname FROM MyGuests";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "<br> id: ". $row["id"]. " - Name: ". $row["firstname"]. " " . $row["lastname"] . "<br>";
+    }
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+?>
+
+</body>
+</html>
+\
+
+
+
+
+https://www.w3schools.com/php/php_mysql_select.asp
+
+
+
+Abirami Industries
+
+
+
+
+INSERT INTO `tblparty` (`partyId`, `partyname`, `addr`, `phoneno`) VALUES ('1', 'Abirami Industries', '22,north street,Virudhunagar', '9812346745');
+
+
+INSERT INTO `tblparty` (`partyId`, `partyname`, `addr`, `phoneno`) VALUES ('2', 'Selvi Traders', '22,south street,Virudhunagar', '9712342375'); 
+
+ALTER TABLE table_name
+MODIFY COLUMN column_name datatype; 
+
+
+ALTER TABLE tblparty
+MODIFY COLUMN phoneno varchar(50); 
+
+
+
+in php content in textbox retrieve from combox
+
+
+link listbox with database and show value in textbox if select ...
+
+
+
+
+https://social.msdn.microsoft.com/Forums/office/en-US/7677d824-d9ef-414f-b599-0eb2b511f6b3/how-to-link-list-box-with-database-and-show-values-in-textbox-if-select-combobox-in-c-with-sql?forum=winformsdatacontrols\
+
+
+autocomplete
+in w3schools
+
+INSERT INTO `tblproduct` (`productId`, `productname`) VALUES ('3', 'books'), ('4', 'notebook');
+
+
+INSERT INTO `tblproduct` (`productId`, `productname`) VALUES ('5', 'Paper'), ('6', 'Pen');
+
+INSERT INTO `tblproduct` (`productId`, `productname`) VALUES ('7', 'A3 Paper'), ('8', 'A2 paper');
+
+INSERT INTO `tblproduct` (`productId`, `productname`) VALUES ('9', 'Buisness card holder');
+
+https://www.webslesson.info/2016/06/ajax-autocomplete-textbox-using-jquery-php-and-mysql.html
+
+
+
+onload="SetCursorFocus('frmsales','txtDate1')"
+
+
+ALTER TABLE tblsales ADD Productname varchar(255), add PartyName varchar(255)
+ALTER TABLE tblproduct ADD ProductPrice varchar(255);
+
+
+ALTER TABLE tblsalesproductdet ADD Invoiceno varchar(100);
+
+INSERT INTO `tblsales`(`SalesId`, `Saldat1`, `Invoiceno`, `Quantity`, `rate`, `amt`, `Productname`, `PartyName`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8]
+
+
+
+GenereGenerationSave.php
+AdminPurchaseOrder.php
+
+AdminPurOrderSave.php
+
+
+CREATE TABLE Persons (
+    PersonID int,
+    LastName varchar(255),
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255)
+);
+
+
+alter table tblsalesproductdet1
+add Invoiceno varchar(100);
+===========
+
+
+CREATE TABLE tblSalesProductDet (
+    SalesProdID int,
+    ProductName varchar(255),
+    Qty varchar(100),
+    Rate varchar(100),
+    Amount varchar(100)
+);
+
+
+CREATE TABLE tblSales1 (
+    SalesID int,
+    Saldat1 date,
+    Invoiceno varchar(255),
+    PartyName varchar(100),
+    NetAmount varchar(100)
+);
+===========
+
+
+
+function Validatetextboxes()
+{
+		
+	var product= document.getElementById("txtproduct").value;
+	var Qty = document.getElementById("txtQuantity").value;
+	var rate1 = document.getElementById("txtrate").value;
+	var amt= document.getElementById("txtamt").value ;
+	var SelParty_Name= document.getElementById("SelPartyName").value ;
+	var Invoice_No= document.getElementById("txtInvoiceno").value ;
+		
+	if(product==null || product=="")
+	{
+		alert("Pls enter the product name");
+		document.getElementById("txtproduct").focus();
+		return false;
+	}
+	if(SelParty_Name == "select")
+	{
+		alert("Pls enter the Party name name");
+		document.getElementById("SelPartyName").focus();
+		return false;
+	}
+	if(Qty==null || Qty=="" || Qty=="0")
+	{
+		alert("Pls enter the Quantity / Quantity cannot be zero");
+		document.getElementById("txtQuantity").focus();
+		return false;
+	}
+	if(rate1==null || rate1=="" || rate1=="0")
+	{
+		alert("Pls enter the rate / rate cannot be zero");
+		document.getElementById("txtrate").focus();
+		return false;
+	}
+	if(amt==null || amt=="" || amt=="0")
+	{
+		alert("Pls enter the amount / amount cannot be zero");
+		document.getElementById("amt").focus();
+		return false;
+	}
+
+}
+
+
+////

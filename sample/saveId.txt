@@ -1,0 +1,17 @@
+$query1 = "SELECT MAX(convert(RoleId, unsigned))  FROM tblrole";
+		
+		$result1 = mysql_query($query1);
+		if (!$result1) die ("Database access failed: " . mysql_error());
+		
+		//$rows = mysql_num_rows($result1);
+		$row1 = mysql_fetch_row($result1);
+		if($row1[0]!="")
+		{
+			
+			$role_id=$row1[0] ;
+			$role_id=$role_id+1;
+		}
+		else
+		{
+			$role_id="1";
+		}	

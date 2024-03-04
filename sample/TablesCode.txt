@@ -1,0 +1,25 @@
+CREATE TABLE tblSales1 (
+    SalesID int,
+    Saldat1 date,
+    Invoiceno varchar(255),
+    PartyName varchar(100),
+    NetAmount varchar(100)
+);
+
+
+CREATE TABLE tblSalesProductDet (
+    SalesProdID int,
+    ProductName varchar(255),
+    Qty varchar(100),
+    Rate varchar(100),
+    Amount varchar(100)
+);
+
+
+CREATE TABLE tblSalesProductDet1 (
+    SalesProdID int,
+    ProductName varchar(255),
+    Qty varchar(100),
+    Rate varchar(100),
+    Amount varchar(100)
+);

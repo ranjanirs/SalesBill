@@ -1,0 +1,193 @@
+
+.ContentWrapper1
+{
+	MARGIN: 0 auto auto; WIDTH: 100%; 
+	HEIGHT: 100%;
+    BACKGROUND: rgb(255,225,240);
+	/*border: 4px dotted blue;*/
+	
+}
+.divContent11
+{
+	MARGIN: auto; WIDTH: 1100px; 
+	HEIGHT: 1000px;
+	/*border-style: solid;*/
+
+	
+}
+
+
+.divOuter1
+{
+	float:left;
+	width:990px;
+	height:auto;
+	padding-top:40px;
+	/*border-style: solid;*/
+}
+
+
+.divHeading
+{
+  font-size:24px;
+  color:#0099FF;
+  padding-bottom:20px;
+}
+
+
+.divlblEmpHeader
+{
+	 float:left;
+	 width:920px;
+	 height:25px;
+	 text-align:left;
+	 font-size:20px;
+	 color:#679A21;
+	 padding-top:20px;
+	 
+}
+
+
+.divlabelOuter
+{
+	 float:left;
+	 width:980px;
+	 height:750px;
+	 padding-top:5px;
+	 padding-left:15px;
+	 border:1px solid #804040;
+	 border-style:dashed;
+}
+.divlblEmpname1
+{
+	float:left;
+	/*width:145px;*/
+	width:235px;
+	height:70px;
+	padding-right:10px;
+	padding-top:15px;
+	text-align:right;
+	
+}
+.divtxtEmpName1
+{
+	float:left;
+	width:230px;
+	height:70px;
+	text-align:left;
+	padding-top:15px;
+	
+}
+
+
+.divlblExp2
+{
+	float:left;
+	width:90px;
+	height:150px;
+	text-align:right;
+	padding-right:20px;
+	padding-top:35px;
+}
+.divtxtExp2
+{
+	float:left;
+	width:300px;
+	height:150px;
+	text-align:left;
+	padding-top:35px;
+}
+
+.divMLMPhotoOuter
+{
+		float:left;
+	padding-left:70px;
+	padding-top:30px;
+	height:170px;
+	width:450px;
+}
+
+
+.divQuant
+{
+	float:left;
+	padding-left:70px;
+	padding-top:30px;
+	height:100px;
+	width:450px;
+	border-style:dashed;
+}
+.divlblPhoto1
+{
+	float:left;
+	width:150px;
+	height:20px;
+	text-align:right;
+	padding-left:20px;
+
+	padding-right:10px;
+	padding-top:19px;
+	
+}
+
+
+.divPhoto1
+{
+	float:left;
+	width:230px;
+	height:140px;
+	text-align:left;
+	padding-top:15px;
+}
+
+.divImgbut
+{
+	float:left;
+	width:330px;
+	height:20px;
+	text-align:left;
+	padding-top:5px;
+}
+
+
+.divLoginButton
+{
+	float:left;
+	width:800px;
+	padding-top:20px;
+	padding-left:100px;
+}
+
+
+.divSearchDet1
+{
+	float:left;
+	width:998px;
+	height:auto;
+	padding-top:5px;
+}
+
+
+
+/*div.solid {border-style: solid;}*/
+
+
+.lblRec
+{
+	width:950px;
+	padding-top:100px; 
+	font-weight:bold;
+	font-size:20px;
+	color:#330033;/*#6CD295;/*#004E9B;*/
+}
+
+.lblBackSalesBill
+{
+	width:500px;
+	padding-top:35px; 
+	padding-left:450px;
+	font-weight:bold;
+	font-size:20px;
+	color: #5FBA5C;/*#6CD295;/*#004E9B;*/
+	text-align:left;
+}

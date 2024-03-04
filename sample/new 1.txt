@@ -1,0 +1,98 @@
+CREATE TABLE `tblfilm1` (
+  `FilmId` varchar(100) NOT NULL,
+  `FilmName` varchar(500) NOT NULL,
+  `GenereId` varchar(100) NOT NULL,
+  `FilmImagePath` varchar(100) NOT NULL,
+  `Abstract` varchar(1000) NOT NULL,
+  `LikeFilm` int(10) NOT NULL,
+  `UnLikeFilm` int(10) NOT NULL,
+  `FilmImageName` varchar(100) NOT NULL
+) 
+
+
+
+CREATE TABLE `tblfilmroles` (
+  `FilmId` varchar(100) NOT NULL,
+  `RoleId` varchar(100) NOT NULL,
+  `PersonName` varchar(500) NOT NULL
+) 
+
+
+CREATE TABLE `tblgenerename` (
+  `GenereId` varchar(500) NOT NULL,
+  `Genere` varchar(1000) NOT NULL
+)
+
+
+-----------------------------------------------+
+
+
+CREATE TABLE `tbllike` (
+  `FilmId` varchar(100) NOT NULL,
+  `CommentId` int(50) NOT NULL,
+  `likeunlike` int(5) NOT NULL,
+  `UserId` varchar(100) NOT NULL
+) 
+                                                              
+--------------------------------------------------------------
+
+ CREATE TABLE `tblrole` (
+  `RoleId` varchar(500) NOT NULL,
+  `Role` varchar(1000) NOT NULL
+) 
+
+
+--------------------------------------------------------------
+ CREATE TABLE `tblroleperson` (
+  `RoleId` varchar(100) NOT NULL,
+  `personname` varchar(150) NOT NULL
+) 
+
+------------------------------------------------------
+
+CREATE TABLE `threaded_comments` (
+`id1` int(5) NOT NULL AUTO_INCREMENT,
+`author` varchar(255) NOT NULL,
+`comment1` text NOT NULL,
+`createdat1` date NOT NULL,
+`parentid1` int(11) NOT NULL,
+`LikeComment` int(11) NOT NULL,
+`UnLikeComment` int(11) NOT NULL,
+`UserId` varchar(100) NOT NULL,
+`FilmId` varchar(100) NOT NULL,
+PRIMARY KEY (`id1`))
+
+
+CREATE TABLE threaded_comments (
+id1 varchar(100) NOT NULL ,
+author varchar(255) NOT NULL,
+comment1 text NOT NULL,
+createdat1 date NOT NULL,
+parentid1 int(11) NOT NULL,
+LikeComment int(11) NOT NULL,
+UnLikeComment int(11) NOT NULL,
+UserId varchar(100) NOT NULL,
+FilmId varchar(100) NOT NULL,
+PRIMARY KEY (`id1`))
+
+--------------------------------------------------------------
+
+ CREATE TABLE `tbluser` (
+  `UserId` varchar(100) NOT NULL,
+  `Name` varchar(150) NOT NULL,
+  `UserName` varchar(100) NOT NULL,
+  `UserMail` varchar(100) NOT NULL,
+  `UserPwd` varchar(50) NOT NULL,
+  `Remarks` varchar(500) NOT NULL,
+  PRIMARY KEY (`UserId`)
+) 
+
+ CREATE TABLE `tbltemp_members` (
+  `UserId` varchar(100) NOT NULL,
+  `Name` varchar(150) NOT NULL,
+  `UserName` varchar(100) NOT NULL,
+  `confirm_code` varchar(100) NOT NULL,
+  `UserPwd` varchar(50) NOT NULL,
+  `Remarks` varchar(500) NOT NULL,
+  PRIMARY KEY (`UserId`)
+) 
